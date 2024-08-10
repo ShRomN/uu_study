@@ -9,6 +9,6 @@ while True:
     elif my_list[i] == 0:
         i += 1
         continue
-    else:
+    elif my_list[i] < 0 or i == len(my_list):
         break
     
