@@ -1,15 +1,19 @@
-
-def f(a, *, b, c):
-    print(a, b, c)
+# def f(a, *, b, c):
+#     print(a, b, c)
     
-f('a', b='b', c='c')
+# f('a', b='b', c='c')
 
 
-from re import match, fullmatch
+# from re import match, fullmatch
 
-s = 'university.help@gmail.com'
+# s = 'university.help@gmail.com'
 
-print(fullmatch(r'^([a-zA-Z0-9_.-]+)\@([A-Za-z_-]+)\.((com)|(ru)|(net))$', s) is None)
+# print(fullmatch(r'^([a-zA-Z0-9_.-]+)\@([A-Za-z_-]+)\.((com)|(ru)|(net))$', s) is None)
 
 
-print('rich' in 'richiest')
+# print('rich' in 'richiest')
+
+# l = [1, 2, 3, 4, 5]
+l = range(1, 6)
+
+print(*l)
