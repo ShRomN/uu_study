@@ -3,7 +3,7 @@ from time import sleep
 
 class User:
     """
-    Класс описывающий объект пользователя.
+    Класс описывающий объект пользователя User.
     """
 
     def __init__(self, nickname: str, password: str, age: int = 0):
@@ -41,7 +41,7 @@ class User:
 
 class Video:
     """
-    Класс описывающий объект видео.
+    Класс описывающий объект видео Video.
     """
 
     def __init__(self, title: str, duration: int = 0, time_now: int = 0, adult_mode: bool = False):
