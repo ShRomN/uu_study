@@ -2,12 +2,14 @@ class Animal:
     """
     Класс животных.
     """
-    def __init__(self, alive:bool=True, fed:bool=False):
+    def __init__(self, name:str='', alive:bool=True, fed:bool=False):
         """
         Конструктор класса Animal.
+        :param name: название животного;
         :param alive: флаг, является ли животное живым;
         :param fed: флаг, является ли животное сытым.
         """
+        self.name = name
         self.alive = alive
         self.fed = fed
 
@@ -41,30 +43,12 @@ class Mammal(Animal):
     """
     Класс млекопитающих.
     """
-    def __init__(self, name:str, alive:bool=True, fed:bool=False):
-        """
-        Конструктор класса Mammal.
-        :param name: название млекопитающего;
-        :param alive: флаг, является ли животное живым;
-        :param fed: флаг, является ли животное сытым.
-        """
-        super().__init__(alive, fed)
-        self.name = name
         
 
 class Predator(Animal):
     """
     Класс хищников.
     """
-    def __init__(self, name:str, alive:bool=True, fed:bool=False):
-        """
-        Конструктор класса Predator.
-        :param name: название хищника;
-        :param alive: флаг, является ли животное живым;
-        :param fed: флаг, является ли животное сытым.
-        """        
-        super().__init__(alive, fed)
-        self.name = name
 
 
 class Flower(Plant):
