@@ -1,5 +1,13 @@
-# def f(a, *, b, c):
-#     print(a, b, c)
+def g(*b):
+    print(b)
+
+
+def f(*a):
+    print(a)
+    g(*list(a))
+
+
+
     
 # f('a', b='b', c='c')
 
@@ -17,3 +25,19 @@
 l = range(1, 6)
 
 print(*l)
+
+lst = 'abcd'
+aaa = [lst.lower()]
+print(aaa)
+
+a = 10 
+b = (a, )
+print(b)
+
+print((10,  ) * 5)
+
+args = [1, 2, 3, 4, 5]
+print(all(map(lambda x: isinstance(x, int) and x > 0, args)))
+print(tuple(args))
+f(*args)
+f()
