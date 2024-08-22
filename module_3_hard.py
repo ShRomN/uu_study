@@ -1,6 +1,6 @@
 def calculate_structure_sum(obj):
     """
-    Функция подсчета суммы элесентов списка.
+    Функция подсчета суммы элементов списка.
     """
     if isinstance(obj, (int, float)):
         return obj
