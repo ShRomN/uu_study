@@ -42,8 +42,11 @@
 # f(*args)
 # f()
 
-import os
-directory = '.'
+# import os
+# directory = '.'
 
-lst = os.walk(directory)
-print(lst)
+# lst = os.walk(directory)
+# print(lst)
+
+f = min
+print(f.__name__)
