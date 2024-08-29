@@ -50,3 +50,5 @@
 
 f = min
 print(f.__name__)
+
+print(bool(-1))
