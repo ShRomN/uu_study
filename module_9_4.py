@@ -35,7 +35,7 @@ first = 'Мама мыла раму'
 second = 'Рамена мало было'
 
 # Вывод результатов
-print(list(map(lambda x: x[0] == x[1], zip(first, second))))
+print(list(map(lambda x, y: x == y, first, second)))
 
 
 # Замыкание:
