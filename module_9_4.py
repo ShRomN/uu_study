@@ -17,8 +17,7 @@ class MysticBall:
     def __init__(self, *words):
         """
         Конструктор класса MysticBall.
-        Атрибуты:
-        words - список строк.
+        :param words: список строк.
         """
         self.words = words
 

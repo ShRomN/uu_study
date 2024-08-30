@@ -5,9 +5,8 @@ class House:
     def __init__(self, name: str, number_of_floors: int):
         """
         Конструктор класса House.
-        Атрибуты:
-        name - имя;
-        number_of_floors - кол-во этажей.
+        :param name: имя;
+        :param number_of_floors: кол-во этажей.
         """
         self.name = name
         self.number_of_floors = number_of_floors
@@ -15,8 +14,7 @@ class House:
     def go_to(self, new_floor: int):
         """
         Метод выводит на экран (в консоль) значения от 1 до new_floor(включительно).
-        Атрибуты:
-        new_floor - номер этажа, на который нужно приехать.
+        :param new_floor: номер этажа, на который нужно приехать.
         """
         print(*range(1, new_floor + 1), sep='\n') if 0 < new_floor <= self.number_of_floors else print(
             'Такого этажа не существует')
@@ -36,48 +34,42 @@ class House:
     def __eq__(self, other):
         """
         Метод (перегрузка оператора ==)  проверки равенства двух объектов self и объект other.
-        Атрибуты:
-        other - 2-й объект для сравнения.
+        :param other: 2-й объект для сравнения.
         """
         return isinstance(other, House) and self.number_of_floors == other.number_of_floors
 
     def __lt__(self, other):
         """
         Метод (перегрузка оператора <) проверки меньше ли объект self чем объект other.
-        Атрибуты:
-        other - 2-й объект для сравнения.
+        :param other: 2-й объект для сравнения.
         """
         return isinstance(other, House) and self.number_of_floors < other.number_of_floors
 
     def __le__(self, other):
         """
         Метод (перегрузка оператора <=) проверки меньше или равен объект self объекту other.
-        Атрибуты:
-        other - 2-й объект для сравнения.
+        :param other: 2-й объект для сравнения.
         """
         return isinstance(other, House) and self.number_of_floors <= other.number_of_floors
 
     def __gt__(self, other):
         """
         Метод (перегрузка оператора >) проверки больше ли объект self чем объект other.
-        Атрибуты:
-        other - 2-й объект для сравнения.
+        :param other: 2-й объект для сравнения.
         """
         return isinstance(other, House) and self.number_of_floors > other.number_of_floors
 
     def __ge__(self, other):
         """
         Метод (перегрузка оператора >=) проверки больше или равен объект self объекту other.
-        Атрибуты:
-        other - 2-й объект для сравнения.
+        :param other: 2-й объект для сравнения.
         """
         return isinstance(other, House) and self.number_of_floors >= other.number_of_floors
 
     def __ne__(self, other):
         """
         Метод (перегрузка оператора !=) проверки неравенсатва объекта self и объекта other.
-        Атрибуты:
-        other - 2-й объект для сравнения.
+        :param other: 2-й объект для сравнения.
         """
         return not self.__eq__(other)
 
@@ -85,8 +77,7 @@ class House:
         """
         Метод (перегрузка оператора +) увеличивает кол-во этажей на переданное
         значение value, возвращает сам объект.
-        Атрибуты:
-        value - значение на которое необходимо увеличить кол-во этажей.
+        :param value: значение на которое необходимо увеличить кол-во этажей.
         """
         self.number_of_floors += (value if isinstance(value, int) else 0)
         return self
@@ -95,8 +86,7 @@ class House:
         """
         Метод (перегрузка оператора +) увеличивает кол-во этажей на переданное
         значение value, возвращает сам объект.
-        Атрибуты:
-        value - значение на которое необходимо увеличить кол-во этажей.
+        :param value: значение на которое необходимо увеличить кол-во этажей.
         """
         return self.__add__(value)
 
@@ -104,8 +94,7 @@ class House:
         """
         Метод (перегрузка оператора +=) увеличивает кол-во этажей на переданное
         значение value, возвращает сам объект.
-        Атрибуты:
-        value - значение на которое необходимо увеличить кол-во этажей.
+        :param value: значение на которое необходимо увеличить кол-во этажей.
         """
         return self.__add__(value)
 
