@@ -48,7 +48,11 @@
 # lst = os.walk(directory)
 # print(lst)
 
-f = min
-print(f.__name__)
+# f = min
+# print(f.__name__)
 
-print(bool(-1))
+# print(bool(-1))
+
+import re
+
+print(re.match(r'^\D+$', 'fg3k'))
