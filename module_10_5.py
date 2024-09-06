@@ -1,5 +1,5 @@
 from datetime import datetime
-from multiprocessing import Pool
+from multiprocessing import Pool, Process
 
 def read_info(name):
     """
@@ -40,3 +40,35 @@ if __name__ == '__main__':
 
     # Вывод времени выполнения
     print(end_t2 - start_t2)
+
+
+    # ---------  Многопроцессный-2  ---------
+    '''
+    При создании вручную 4-х процессов (под каждый файл)
+    работает быстрее чем при использовании Pool объекта.
+    Примерные показатели времени:
+    0:00:18.415831 - Линейный вызов
+    0:00:31.000598 - Многопроцессный
+    0:00:06.710454 - Многопроцессный-2
+    '''
+    start_t3 = datetime.now()
+
+    p1 = Process(target=read_info, args=(filenames[0],))
+    p2 = Process(target=read_info, args=(filenames[1],))
+    p3 = Process(target=read_info, args=(filenames[2],))
+    p4 = Process(target=read_info, args=(filenames[3],))
+
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+
+    p1.join()
+    p2.join()
+    p3.join()
+    p4.join()
+
+    end_t3 = datetime.now()
+
+    # Вывод времени выполнения
+    print(end_t3 - start_t3)
