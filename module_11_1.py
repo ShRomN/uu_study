@@ -67,37 +67,25 @@ print('-' * 50)
 
 
 # ===========================  РАБОТА С БИБЛИОТЕКОй - MATPLOTLIB  ===========================
+# Используем агрегированные данные из с фильтрацие по кол-ву повторений (count >= 30) в обратном порядке
 agg_df_2 = agg_df[agg_df['count'] > 30].sort_values(by='count', ascending=False)
-print(agg_df_2.dtypes)
-print(type(agg_df_2['count']))
 
-# Печать графика с использованием PANDAS
-agg_df_2['count'].plot(
-    kind='bar',
-    title='Артисты написавшие больше всего хитов за последние 100 лет',
-    xlabel='Имя артиста',
-    ylabel='Количество написаных хитов'
-    )
-
-print(agg_df_2.index)
-
-
-
-
-
-
+# # Рендеринг графика с использованием PANDAS-стиля (внутрь которого встроин MATPLOTLIB)
+# agg_df_2['count'].plot(
+#     kind='bar',
+#     title='Артисты написавшие больше всего хитов за последние 100 лет',
+#     xlabel='Имя артиста',
+#     ylabel='Количество написаных хитов'
+#     )
 
 fig, ax = plt.subplots()
 
-# artists = ['apple', 'blueberry', 'cherry', 'orange']
+# Получаем данные для оси-X из агрегированных agg_df_2
 artists = list(agg_df_2.index)
-# counts = [40, 100, 30, 55, 40, 100, 30, 55]
+# Получаем данные для оси-Y из агрегированных agg_df_2
 counts = list(agg_df_2['count'])
-# bar_labels = ['red', 'blue', '_red', 'orange']
-# bar_colors = ['tab:red', 'tab:blue', 'tab:red', 'tab:orange']
 
-# ax.bar(fruits, counts, label=bar_labels, color=bar_colors)
-# ax.bar(artists, counts, label=bar_labels)
+# Установка данных графика для осей X и Y
 ax.bar(artists, counts)
 
 
@@ -106,15 +94,18 @@ ax.set_title('Артисты написавшие больше всего хит
 
 # Поворот подписей по оси X вертикально
 plt.xticks(rotation='vertical')
-# Установка подписи оси X
+# Установка подписи оси-X
 ax.set_xlabel('Имя артиста')
 
-# Установка подписи оси Y
+# Установка подписи оси-Y
 ax.set_ylabel('Количество написаных хитов')
 
-# ax.legend(title='Имя артиста')
+# Сдвиг графика вверх чтобы были видны подписи оси-X
+plt.subplots_adjust(bottom=0.4)
 
+# Рендеринг графика
+# plt.show()
 
-plt.show()
-# plt.savefig('./matplotlib_imgs/test.png', format='png')
+# Сохранение графика в png
+plt.savefig('./matplotlib_imgs/test.png', format='png')
 # ===========================================================================================
