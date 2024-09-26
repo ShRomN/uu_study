@@ -41,9 +41,14 @@ class Tournament:
         # ----------------------------
 
         # ------- 2-й вариант -------
-        finishers = dict(map(lambda x: (x[0] + 1, str(x[1])), enumerate(self.participants)))
-        self.participants.clear()
+        # finishers = dict(map(lambda x: (x[0] + 1, str(x[1])), enumerate(self.participants)))
+        # self.participants.clear()
         # ----------------------------
 
+        # ------- 3-й вариант -------
+        participants = sorted(self.participants, key=lambda x: self.full_distance / x.speed)
+        finishers = dict(map(lambda x: (x[0] + 1, str(x[1])), enumerate(participants)))
+        self.participants.clear()
+        # ----------------------------
 
         return finishers
