@@ -10,10 +10,13 @@ with open('bot_key.txt', 'r') as f_key:
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
+# Формируем клавиатуру
 kb = ReplyKeyboardMarkup(resize_keyboard=True)
+# Формируем кнопки для клавиатуры
 btn_1 = KeyboardButton(text='Рассчитать')
 btn_2 = KeyboardButton(text='Информация')
 
+# Добавляем кнопки в клавиатуру
 kb.add(btn_1)
 kb.add(btn_2)
 
@@ -40,8 +43,7 @@ async def start(message):
 @dp.message_handler(text=['Рассчитать'])
 async def set_age(message):
     """
-    Функция запуска цепочки сообщений и устанавливающая
-    значение переменной age в классе машины состояний.
+    Функция запуска цепочки сообщений (1-функция цепочки).
     """
     await message.answer('Введите свой возраст:')
     # Запуск следующей функции в цепочке
@@ -51,7 +53,9 @@ async def set_age(message):
 @dp.message_handler(state=UserState.age)
 async def set_growth(message, state):
     """
-    Функция устанавливающая значение переменной growth в классе машины состояний.
+    Функция устанавливающая значение переменной age в классе
+    машины состояний и запуска следующего по цепочке сообщений
+    (2-функция цепочки).
     """
     # Установка значения в переменную age
     await state.update_data(age=int(message.text))
@@ -62,6 +66,11 @@ async def set_growth(message, state):
 
 @dp.message_handler(state=UserState.growth)
 async def set_weight(message, state):
+    """
+    Функция устанавливающая значение переменной growth в классе
+    машины состояний и запуска следующего по цепочке сообщений
+    (3-функция цепочки).
+    """
     # Установка значения в переменную growth
     await state.update_data(growth=int(message.text))
     await message.answer('Введите свой вес:')
@@ -71,6 +80,12 @@ async def set_weight(message, state):
 
 @dp.message_handler(state=UserState.weight)
 async def send_calories(message, state):
+    """
+    Функция устанавливающая значение переменной weight в классе
+    машины состояний, после чего соберает данные из машины состояний
+    и производит вычисления с выводом информации пользователю
+    (4-функция (последняя) цепочки).
+    """
     # Установка значения в переменную weight
     await state.update_data(weight=int(message.text))
     data = await state.get_data()

@@ -1,6 +1,8 @@
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 api=''
@@ -9,6 +11,26 @@ with open('bot_key.txt', 'r') as f_key:
 
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+# Формируем клавиатуру
+kb = ReplyKeyboardMarkup(resize_keyboard=True)
+# Формируем кнопки для клавиатуры
+btn_1 = KeyboardButton(text='Рассчитать')
+btn_2 = KeyboardButton(text='Информация')
+
+# Добавляем кнопки в клавиатуру
+kb.add(btn_1)
+kb.add(btn_2)
+
+# Формируем inline-клавиатуру
+ikb = InlineKeyboardMarkup()
+# Формируем кнопки для inline-клавиатуры
+ibtn_1 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
+ibtn_2 = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
+
+# Добавляем кнопки в inline-клавиатуру
+ikb.add(ibtn_1)
+ikb.add(ibtn_2)
 
 
 class UserState(StatesGroup):
@@ -24,17 +46,27 @@ class UserState(StatesGroup):
 async def start(message):
     """
     Стартовая функция реагирующая на команду start
-    выводящяя пользователю приветственное сообщение.
+    выводящяя пользователю приветственное сообщение
+    и разметку клавиатуры.
     """
-    await message.answer('Привет! Я бот помогающий твоему здоровью.')
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
 
 
-@dp.message_handler(text=['Calories'])
-async def set_age(message):
+@dp.message_handler(text=['Рассчитать'])
+async def main_menu(message):
+    """
+    Функция вывода inline-меню при получения сообщения
+    нажатия на кнопку - 'Рассчитать'.
+    """
+    await message.answer('Выберите опцию:', reply_markup=ikb)
+
+
+@dp.callback_query_handler(text='calories')
+async def set_age(call):
     """
     Функция запуска цепочки сообщений (1-функция цепочки).
     """
-    await message.answer('Введите свой возраст:')
+    await call.message.answer('Введите свой возраст:')
     # Запуск следующей функции в цепочке
     await UserState.age.set()
 
@@ -83,6 +115,17 @@ async def send_calories(message, state):
     # Выводим значение пользователю обратным сообщением
     await message.answer(f'Ваша норма калорий {calories}')
     await state.finish()
+
+
+@dp.callback_query_handler(text='formulas')
+async def get_formulas(call):
+    """
+    Функция вывода пользователю используемой формулы
+    расчета калорийности при нажатии на кнопку
+    'Формулы расчёта' в inline-меню.
+    """
+    await call.message.answer('10 х вес (кг) + 6,25 x рост (см) – 5 х возраст (г) + 5')
+    await call.answer()
 
 
 
