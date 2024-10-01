@@ -1,7 +1,7 @@
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.filters.state import State, StatesGroup
-
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 api=''
 with open('bot_key.txt', 'r') as f_key:
@@ -9,6 +9,13 @@ with open('bot_key.txt', 'r') as f_key:
 
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
+
+kb = ReplyKeyboardMarkup(resize_keyboard=True)
+btn_1 = KeyboardButton(text='Рассчитать')
+btn_2 = KeyboardButton(text='Информация')
+
+kb.add(btn_1)
+kb.add(btn_2)
 
 
 class UserState(StatesGroup):
@@ -24,12 +31,13 @@ class UserState(StatesGroup):
 async def start(message):
     """
     Стартовая функция реагирующая на команду start
-    выводящяя пользователю приветственное сообщение.
+    выводящяя пользователю приветственное сообщение
+    и разметку клавиатуры.
     """
-    await message.answer('Привет! Я бот помогающий твоему здоровью.')
+    await message.answer('Привет! Я бот помогающий твоему здоровью.', reply_markup=kb)
 
 
-@dp.message_handler(text=['Calories'])
+@dp.message_handler(text=['Рассчитать'])
 async def set_age(message):
     """
     Функция запуска цепочки сообщений и устанавливающая
