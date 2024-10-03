@@ -43,8 +43,40 @@ async def price(message):
     await message.answer(texts.what_dyw, reply_markup=catalog_kb)
 
 
+@dp.callback_query_handler(text=['medium'])
+async def buy_m(call):
+    """
+    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
+    """
+    await call.message.answer(texts.Mgame, reply_markup=buy_kb)
+    await call.answer()
 
 
+@dp.callback_query_handler(text=['big'])
+async def buy_l(call):
+    """
+    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
+    """
+    await call.message.answer(texts.Lgame, reply_markup=buy_kb)
+    await call.answer()
+
+
+@dp.callback_query_handler(text=['mega'])
+async def buy_xl(call):
+    """
+    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
+    """
+    await call.message.answer(texts.XLgame, reply_markup=buy_kb)
+    await call.answer()
+
+
+@dp.callback_query_handler(text=['other'])
+async def buy_other(call):
+    """
+    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
+    """
+    await call.message.answer(texts.other, reply_markup=buy_kb)
+    await call.answer()
 
 
 
