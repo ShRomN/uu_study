@@ -2,14 +2,11 @@ import logging
 
 from aiogram import Bot, Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.dispatcher import FSMContext
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 from config import *
-from keyboards import *
-import texts
+
+import handlers.Start
+import handlers.Category
 
 
 logging.basicConfig(level=logging.INFO)
@@ -17,70 +14,14 @@ bot = Bot(token=API)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
-@dp.message_handler(commands=['start'])
-async def start(message):
-    """
-    Стартовая функция реагирующая на команду start
-    выводящяя пользователю приветственное сообщение
-    и разметку клавиатуры.
-    """
-    await message.answer(texts.start, reply_markup=start_kb)
+dp.message_handler(commands=['start'])(handlers.Start.start)
+dp.message_handler(text=['О нас'])(handlers.Start.info)
 
-
-@dp.message_handler(text=['О нас'])
-async def info(message):
-    """
-    Функция вывода информации при нажатии на кнопку - 'О нас'.
-    """
-    await message.answer(texts.about, reply_markup=start_kb)
-
-
-@dp.message_handler(text=['Стоимость'])
-async def price(message):
-    """
-    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
-    """
-    await message.answer(texts.what_dyw, reply_markup=catalog_kb)
-
-
-@dp.callback_query_handler(text=['medium'])
-async def buy_m(call):
-    """
-    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
-    """
-    await call.message.answer(texts.Mgame, reply_markup=buy_kb)
-    await call.answer()
-
-
-@dp.callback_query_handler(text=['big'])
-async def buy_l(call):
-    """
-    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
-    """
-    await call.message.answer(texts.Lgame, reply_markup=buy_kb)
-    await call.answer()
-
-
-@dp.callback_query_handler(text=['mega'])
-async def buy_xl(call):
-    """
-    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
-    """
-    await call.message.answer(texts.XLgame, reply_markup=buy_kb)
-    await call.answer()
-
-
-@dp.callback_query_handler(text=['other'])
-async def buy_other(call):
-    """
-    Функция вывода стоимости при нажатии на кнопку - 'Стоимость'.
-    """
-    await call.message.answer(texts.other, reply_markup=buy_kb)
-    await call.answer()
-
-
-
-
+dp.message_handler(text=['Стоимость'])(handlers.Category.price)
+dp.callback_query_handler(text=['medium'])(handlers.Category.buy_m)
+dp.callback_query_handler(text=['big'])(handlers.Category.buy_l)
+dp.callback_query_handler(text=['mega'])(handlers.Category.buy_xl)
+dp.callback_query_handler(text=['other'])(handlers.Category.buy_other)
 
 
 if __name__ == "__main__":
