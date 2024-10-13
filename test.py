@@ -53,6 +53,24 @@
 
 # print(bool(-1))
 
-import re
+# import re
 
-print(re.match(r'^\D+$', 'fg3k'))
+# print(re.match(r'^\D+$', 'fg3k'))
+
+
+
+
+# try:
+#     a = 10
+#     print(10 / 0)
+# except Exception as e:
+#     print(a + 1)
+# else:
+#     print(a)
+
+
+if True:
+    a = 10
+
+if True:
+    print(a)
