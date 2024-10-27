@@ -58,3 +58,23 @@ print('d_np2 -', d_np2)
 t5 = t1.float()
 print('t5 -', t5)
 print('t5.dtype -', t5.dtype)
+
+
+
+
+# Создание тензора из списка
+t6 = torch.tensor([-1, 1], dtype=torch.float64)
+print('t6 -', t6)
+print('t6.dtype -', t6.dtype)
+
+
+t7 = torch.tensor([-0.5,], dtype=torch.float64)
+print('t7 -', t7)
+print('t7.dtype -', t7.dtype)
+
+t8 = torch.tensor([0.5, 0.5], dtype=torch.float64)
+print('t8 -', t8)
+print('t8.dtype -', t8.dtype)
+
+t8[1] *= -1
+print('t8 -', t8)
