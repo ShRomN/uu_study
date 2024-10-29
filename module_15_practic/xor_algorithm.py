@@ -1,6 +1,5 @@
 import torch
 
-# Функция активации (ступенчатая)
 def activation_function(x):
     """
     Ступенчатая функция активации.
@@ -62,7 +61,7 @@ class PerceptronXor:
     """
     def __init__(self, num_inputs, h_p1, h_p2):
         """
-        Конструктор класса Perceptron.
+        Конструктор класса PerceptronXor.
         :param num_inputs: количество входных сигналов;
         :param h_p1: объект скрытого слоя - обученный персептрон AND;
         :param h_p2: объект скрытого слоя - обученный персептрон OR.
@@ -123,7 +122,7 @@ class PerceptronXor:
 #     """
 #     def __init__(self, h_p1, h_p2):
 #         """
-#         Конструктор класса Perceptron.
+#         Конструктор класса PerceptronXor.
 #         :param h_p1: объект скрытого слоя - обученный персептрон AND;
 #         :param h_p2: объект скрытого слоя - обученный персептрон OR.
 #         """

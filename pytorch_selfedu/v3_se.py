@@ -78,3 +78,11 @@ print('t8.dtype -', t8.dtype)
 
 t8[1] *= -1
 print('t8 -', t8)
+
+
+# Генерация 25 случайных чисел
+t9 = torch.randint(0, 2, (25,), dtype=torch.float64)
+print('t9 -', t9)
+print('t9.dtype -', t9.dtype)
+
+
