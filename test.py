@@ -69,8 +69,31 @@
 #     print(a)
 
 
-if True:
-    a = 10
+# if True:
+#     a = 10
 
-if True:
-    print(a)
+# if True:
+#     print(a)
+
+
+
+lst = [
+    {
+        'id': 1,
+        'un': 'User_1',
+        'age': 20
+    },
+    {
+        'id': 2,
+        'un': 'User_2',
+        'age': 20
+    },
+    {
+        'id': 3,
+        'un': 'User_3',
+        'age': 20
+    }
+]
+
+deleting_id = list(filter(lambda x: x['id'] == 4, lst))
+print(deleting_id)
