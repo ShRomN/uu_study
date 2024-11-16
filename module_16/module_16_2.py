@@ -38,7 +38,7 @@ async def user_info_page(username: Annotated[str, Path(min_length=5, max_length=
                          age: Annotated[int, Path(ge=18, le=120, description='Enter age', example=24)]) -> str:
     """
     Функция обработки запроса при обращении к странице пользователя с передачей параметров.
-    :param username: имя полбзователя;
+    :param username: имя пользователя;
     :param age: возраст пользователя.
     :return: строка с ответным сообщением.
     """
