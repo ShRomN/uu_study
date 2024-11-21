@@ -3,14 +3,19 @@
 /virt_env_module_11_2/.idea/
 /virt_env_module_11_2/.venv/
 /virt_env_module_11_2/.my_venv/
-/module_16/.venv/
-/module_16/.vscode/
-/module_16/__pycache__/
-/module_17/.venv/
-/module_17/.vscode/
-/module_17/__pycache__/
-/module_17/app/__pycache__/
-/module_17/app/routers/__pycache__/
 
 bot.txt
 bot_key.txt
+
+/module_16/.venv/
+/module_16/.vscode/
+/module_16/__pycache__/
+
+/module_17/.venv/
+/module_17/.idea/
+/module_17/.vscode/
+/module_17/__pycache__/
+/module_17/app/__pycache__/
+/module_17/app/backend/__pycache__/
+/module_17/app/models/__pycache__/
+/module_17/app/routers/__pycache__/
