@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from app.backend.db_depends import get_db
 # Аннотации, Модели БД и Pydantic.
 from typing import Annotated
-from app.models import User
+from app.models import User, Task
 from app.schemas import CreateUser, UpdateUser
 # Функции работы с записями.
 from sqlalchemy import insert, select, update, delete
@@ -46,6 +46,26 @@ async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
     return user
 
 
+@router.get('/user_id/tasks')
+async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
+    """
+    Функция обработки запроса при обращении к странице с информацией о списке всех задач конкретном пользователе по его id.
+    :param db: база данных с информацией о пользователях и задачах;
+    :param user_id: id пользователя информация о списке задач которого запрашивается.
+    :return: информация о списке задач пользователя при его наличии в базе или ошибка 404.
+    """
+    user = db.scalar(select(User).where(User.id == user_id))
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail='User was not found'
+        )
+    
+    user_tasks = db.scalars(select(Task).where(Task.user_id == user_id)).all()
+    
+    return user_tasks
+
+
 @router.post('/create')
 async def create_user(db: Annotated[Session, Depends(get_db)], create_user: CreateUser) -> dict:
     """
@@ -57,7 +77,8 @@ async def create_user(db: Annotated[Session, Depends(get_db)], create_user: Crea
     db.execute(insert(User).values(username=create_user.username,
                                    firstname=create_user.firstname,
                                    lastname=create_user.lastname,
-                                   age=create_user.age))
+                                   age=create_user.age,
+                                   slug=slugify(create_user.username)))
     db.commit()
 
     return {'status_code': status.HTTP_201_CREATED, 'transaction': 'Successful'}
@@ -101,6 +122,9 @@ async def delete_user(db: Annotated[Session, Depends(get_db)], user_id: int) -> 
             status_code=status.HTTP_404_NOT_FOUND,
             detail='User was not found'
         )
+    # Удаляем информацию о задачах привязанных к удаляемому пользователю из таблицы - tasks
+    db.execute(delete(Task).where(Task.user_id == user_id))
+    # Удаляем информацию о пользователе из таблицы - users
     db.execute(delete(User).where(User.id == user_id))
     db.commit()
 
