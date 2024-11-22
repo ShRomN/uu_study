@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, DeclarativeBase
 engin = create_engine('sqlite:///taskmanager.db', echo=True)
 
 # Создаем сессию
-SessionLockal = sessionmaker(bind=engin)
+SessionLocal = sessionmaker(bind=engin)
 
 class Base(DeclarativeBase):
     pass

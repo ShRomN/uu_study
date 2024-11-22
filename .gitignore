@@ -17,5 +17,6 @@ bot_key.txt
 /module_17/__pycache__/
 /module_17/app/__pycache__/
 /module_17/app/backend/__pycache__/
+/module_17/app/migrations/__pycache__/
 /module_17/app/models/__pycache__/
 /module_17/app/routers/__pycache__/
