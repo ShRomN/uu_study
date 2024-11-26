@@ -1,4 +1,4 @@
-**/__pycache__
+__pycache__
 /.vscode
 /virt_env_module_11_2/.idea/
 /virt_env_module_11_2/.venv/
