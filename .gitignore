@@ -1,18 +1,8 @@
 __pycache__
-/.vscode
-/virt_env_module_11_2/.idea/
-/virt_env_module_11_2/.venv/
-/virt_env_module_11_2/.my_venv/
+.vscode
+.idea
+.venv
+.my_venv
 
 bot.txt
 bot_key.txt
-
-/module_16/.venv/
-/module_16/.vscode/
-
-/module_17/.venv/
-/module_17/.idea/
-/module_17/.vscode/
-
-/module_18/.venv/
-/module_18/.vscode/

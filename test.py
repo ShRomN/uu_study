@@ -97,3 +97,5 @@ lst = [
 
 deleting_id = list(filter(lambda x: x['id'] == 4, lst))
 print(deleting_id)
+
+print("""ddddd""")
