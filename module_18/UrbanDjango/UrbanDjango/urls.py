@@ -21,5 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # подключение путей приложения - task2
-    path('task2/', include('task2.urls')) 
+    path('task2/', include('task2.urls')),
+
+    # подключение путей приложения - task3
+    path('movies/', include('task3.urls')) 
 ]
