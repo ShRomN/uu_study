@@ -16,6 +16,18 @@ class MoviesPageView(TemplateView):
     # Используемый шаблон представления для страницы со списком фильмов. 
     template_name = 'third_task/movies_page_template.html'
 
+    def get_context_data(self, **kwargs):
+        """
+        Метод формирования контекста.
+        """
+        context = super().get_context_data(**kwargs)
+        context['movies'] = {
+            'movie1': 'Москва слезам не верит',
+            'movie2': 'Летят журавли',
+            'movie3': 'Они сражались за Родину'
+        }
+        return context
+
 
 class FavoritesPageView(TemplateView):
     """
