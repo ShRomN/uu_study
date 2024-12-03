@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from task3.views import MainPageView, MoviesPageView, FavoritesPageView
+# from task3.views import MainPageView, MoviesPageView, FavoritesPageView
+from task4.views import MainPageView, MoviesPageView, FavoritesPageView
 
 urlpatterns = [
     path('', MainPageView.as_view()),

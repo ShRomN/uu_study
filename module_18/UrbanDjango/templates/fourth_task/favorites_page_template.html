@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Избранные</title>
-</head>
-<body>
-    <h1>Избранные</h1>
-    <p>В настоящее время список Ваших любимых фильмов пуст.</p>
-    <button onclick="location.href='/movies/';">Вернутся на главную</button>
-</body>
-</html>
+{% extends 'fourth_task/menu.html' %}
+
+{% block title %}Избранные{% endblock %}
+{% block pagename %}Избранные{% endblock %}
+
+{% block content %}
+<p>В настоящее время список Ваших любимых фильмов пуст.</p>
+<button class="btn btn-primary" onclick="location.href='/movies/';">Вернутся на главную</button>
+{% endblock %}
