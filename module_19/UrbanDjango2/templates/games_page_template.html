@@ -1,0 +1,16 @@
+{% extends 'menu.html' %}
+
+{% block title %}Игра{% endblock %}
+{% block pagename %}Игра{% endblock %}<!DOCTYPE html>
+
+{% block content %}
+<ul>
+    {% for game in games %}
+    <li style="margin: 10px;">
+        <p style="display: inline;">{{game.title}} | {{game.description}}  | {{game.cost}}</p>
+        <button class="btn btn-primary">Купить</button>
+    </li>
+    {% endfor %}
+</ul>
+<button class="btn btn-primary" onclick="location.href='/';">Вернутся на главную</button>
+{% endblock %}

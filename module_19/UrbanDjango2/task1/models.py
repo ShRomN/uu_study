@@ -6,6 +6,7 @@ class Buyer(models.Model):
     Класс модели содержащий информацию о покупателе.
     """
     name = models.CharField(verbose_name='Имя покупателя', max_length=50)
+    password = models.CharField(verbose_name='Пароль', max_length=50)
     balance = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='Баланс счета покупателя')
     age = models.PositiveIntegerField(verbose_name='Возраст покупателя')
 
